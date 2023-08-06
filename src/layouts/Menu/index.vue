@@ -1,13 +1,15 @@
 <template>
-  <a-menu
-    v-model="openKeys"
-    :selected-keys="[activeMenu]"
-    :auto-open-selected="true"
-    mode="vertical"
-    @menu-item-click="onClickMenuItem"
-  >
-    <SubMenu :menu-list="menuList" />
-  </a-menu>
+  <a-scrollbar>
+    <a-menu
+      v-model="openKeys"
+      :selected-keys="[activeMenu]"
+      :auto-open-selected="true"
+      mode="vertical"
+      @menu-item-click="onClickMenuItem"
+    >
+      <SubMenu :menu-list="menuList" />
+    </a-menu>
+  </a-scrollbar>
 </template>
 <script lang="ts" name="Menu" setup>
 import SubMenu from './SubMenu.vue';
@@ -19,7 +21,7 @@ const menuStore = useMenuStore();
 // const selectedKeys = ref();
 const openKeys = ref();
 
-const menuList = computed(() => menuStore.menuList);
+const menuList = computed(() => menuStore.getAuthMenuList);
 
 const route = useRoute();
 

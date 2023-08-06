@@ -22,6 +22,7 @@ declare module 'vue' {
     ALayoutSider: typeof import('@arco-design/web-vue')['LayoutSider']
     AMenu: typeof import('@arco-design/web-vue')['Menu']
     AMenuItem: typeof import('@arco-design/web-vue')['MenuItem']
+    AScrollbar: typeof import('@arco-design/web-vue')['Scrollbar']
     ASpace: typeof import('@arco-design/web-vue')['Space']
     ASubMenu: typeof import('@arco-design/web-vue')['SubMenu']
     ATabPane: typeof import('@arco-design/web-vue')['TabPane']

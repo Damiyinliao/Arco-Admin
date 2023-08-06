@@ -1,0 +1,87 @@
+{
+  "code": 200,
+  "data": [
+    {
+      "path": "/home",
+      "name": "Home",
+      "meta": {
+        "title": "首页",
+        "noChild": true
+      },
+      "component": "/home/index",
+      "children": []
+    },
+    {
+      "path": "/dashboard",
+      "name": "Dashboard",
+      "redirect": "/dashboard/workbench",
+      "meta": {
+        "title": "仪表盘",
+        "icon": "icon-dashboard"
+      },
+      "children": [
+        {
+          "path": "/dashboard/workbench",
+          "name": "Workbench",
+          "meta": {
+            "title": "工作台",
+            "icon": "icon-desktop"
+          },
+          "component": "/dashboard/WorkBench"
+        },
+        {
+          "path": "/dashboard/analysis",
+          "name": "Analysis",
+          "meta": {
+            "title": "分析页"
+          },
+          "component": "/dashboard/Analysis"
+        }
+      ]
+    },
+    {
+      "path": "/nav",
+      "name": "Nav",
+      "redirect": "/nav/menu",
+      "meta": {
+        "title": "导航"
+      },
+      "children": [
+        {
+          "path": "/nav/menu",
+          "name": "Menu",
+          "meta": {
+            "title": "菜单"
+          },
+          "component": "/nav/Menu"
+        },
+        {
+          "path": "/nav/dropdown",
+          "name": "Dropdown",
+          "meta": {
+            "title": "下拉菜单"
+          },
+          "redirect": "/nav/dropdown/one",
+          "children": [
+            {
+              "path": "/nav/dropdown/one",
+              "name": "DropdownOne",
+              "meta": {
+                "title": "下拉菜单1"
+              },
+              "component": "/nav/dropdown/DropdownOne"
+            },
+            {
+              "path": "/nav/dropdown/two",
+              "name": "DropdownTwo",
+              "meta": {
+                "title": "下拉菜单2"
+              },
+              "component": "/nav/dropdown/DropdownTwo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

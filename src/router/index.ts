@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { staticRoutes } from './routes/staticRoutes';
-import { routes } from './routes';
 
 import setupGuard from './guard'; // 路由守卫
 
@@ -12,7 +11,7 @@ import type { App } from 'vue';
 const router = createRouter({
   // history: createWebHashHistory(), // hash模式 ‘#’
   history: createWebHistory(), // history模式
-  routes: [...staticRoutes, ...routes], // 路由表
+  routes: [...staticRoutes], // 路由表
   strict: true, // 是否应该禁止尾部斜杠。默认为假
   scrollBehavior: () => ({ left: 0, top: 0 }) // 滚动行为
 });

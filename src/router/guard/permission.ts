@@ -1,7 +1,7 @@
 import type { Router } from 'vue-router';
 import NProgress from '@/plugin/nprogress';
-import { MenuItem, useMenuStore } from '@/store/modules/menu';
-import { routes } from '@/router/routes';
+import { useMenuStore } from '@/store/modules/menu';
+import { initDynamicRoutes } from '@/router/routes/dynamicRoutes';
 
 /** 路由守卫 */
 export default function setupPermissionGuard(router: Router) {
@@ -12,7 +12,13 @@ export default function setupPermissionGuard(router: Router) {
     const menuStore = useMenuStore();
 
     NProgress.start();
-    menuStore.setMenuList(routes as unknown as MenuItem[]);
+    // menuStore.setMenuList(routes as unknown as MenuItem[]);
+
+    if (!menuStore.getAuthMenuList.length) {
+      await initDynamicRoutes();
+      return next({ ...to, replace: true });
+    }
+
     next();
   });
   /**

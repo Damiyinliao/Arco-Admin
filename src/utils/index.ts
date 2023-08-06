@@ -6,7 +6,7 @@ import { MenuItem } from '@/store/modules/menu';
  * @param {Object} result 处理后的结果
  * @returns {Object}
  */
-export const getAllBreadcrumbList = (
+export const handleAllBreadcrumbList = (
   menuList: MenuItem[],
   parent = [],
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,7 +14,19 @@ export const getAllBreadcrumbList = (
 ) => {
   for (const item of menuList) {
     result[item.path] = [...parent, item];
-    if (item.children) getAllBreadcrumbList(item.children, result[item.path], result);
+    if (item.children) handleAllBreadcrumbList(item.children, result[item.path], result);
   }
   return result;
+};
+
+/**
+ * @description 扁平化菜单，好动态添加路由
+ * @param menuList 菜单列表
+ * @returns {Array}
+ */
+export const handleFlatMenuList = (menuList: MenuItem[]): MenuItem[] => {
+  const newMenuList: MenuItem[] = JSON.parse(JSON.stringify(menuList));
+  return newMenuList.flatMap((item) => {
+    return [item, ...(item.children ? handleFlatMenuList(item.children) : [])];
+  });
 };

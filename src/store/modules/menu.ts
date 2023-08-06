@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
-import { getAllBreadcrumbList } from '@/utils';
+import { handleAllBreadcrumbList, handleFlatMenuList } from '@/utils';
+import { getAuthMenuList } from '@/api/modules/login';
 
 export interface MetaProps {
   title: string;
@@ -22,24 +23,30 @@ export interface MenuItem {
 
 export interface MenuState {
   menuList: MenuItem[];
+  authMenuList: MenuItem[];
 }
 
 export const useMenuStore = defineStore({
   id: 'menu',
   state: (): MenuState => ({
-    menuList: []
+    menuList: [],
+    authMenuList: []
   }),
   getters: {
-    getMenuList(): MenuItem[] {
-      return this.menuList;
-    },
-    getBreadcrumbList(state) {
-      return getAllBreadcrumbList(state.menuList);
+    getMenuList: (state) => state.menuList,
+    getAuthMenuList: (state) => state.authMenuList,
+    getFlatAuthMenuList: (state) => handleFlatMenuList(state.authMenuList),
+    getBreadcrumbList: (state) => {
+      return handleAllBreadcrumbList(state.authMenuList);
     }
   },
   actions: {
     setMenuList(menuList: MenuItem[]): void {
       this.menuList = menuList;
+    },
+    async setAuthMenuList() {
+      const { data } = await getAuthMenuList();
+      this.authMenuList = data;
     }
   }
 });
