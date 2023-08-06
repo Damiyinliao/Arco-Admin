@@ -12,11 +12,15 @@
   },
   "dependencies": {
     "@arco-design/web-vue": "^2.48.1",
+    "@vueuse/core": "^10.3.0",
+    "nprogress": "^0.2.0",
+    "pinia": "^2.1.6",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
     "@types/node": "^20.4.2",
+    "@types/nprogress": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "6",
     "@vitejs/plugin-vue": "^4.2.3",
